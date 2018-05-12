@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_widget">@dimen/x16</dimen>
+    <dimen name="padding_widget">@dimen/x8</dimen>
+    <dimen name="round_radius">@dimen/x16</dimen>
+    <dimen name="margin_widget_big">@dimen/x32</dimen>
+    <dimen name="margin_widget_mid">@dimen/x24</dimen>
+    <dimen name="margin_widget_small">@dimen/x10</dimen>
+    <dimen name="margin_widget_large">@dimen/x50</dimen>
+    <dimen name="padding_widget_mid">@dimen/x12</dimen>
+    <dimen name="bm_line_height">1px</dimen>
+    <dimen name="height_banner">@dimen/x300</dimen>
+    <dimen name="swipe_progress_bar_height">@dimen/x16</dimen>
+    <dimen name="bm_corner_tag">@dimen/x8</dimen>
+    <dimen name="bm_height_button">@dimen/x68</dimen>
+
+    <!--text size-->
+    <dimen name="title_size">@dimen/x36</dimen>
+    <dimen name="little_hint">@dimen/x24</dimen>
+    <dimen name="bm_amount_size_normal">@dimen/x40</dimen>
+    <dimen name="bm_hint_size_small">@dimen/x20</dimen>
+    <dimen name="bm_hint_text_size_normal">@dimen/x28</dimen>
+    <dimen name="bm_hint_size_big">@dimen/x30</dimen>
+    <dimen name="bm_text_size_sub">@dimen/x32</dimen>
+    <dimen name="bm_button_text_size">@dimen/x34</dimen>
+    <dimen name="bm_hint_text_size_sub">@dimen/x24</dimen>
+
+    <!--icon size-->
+    <dimen name="bm_icon_size_mid">@dimen/x72</dimen>
+    <dimen name="bm_icon_size_bill_type">@dimen/x82</dimen>
+    <dimen name="bm_icon_size">@dimen/x86</dimen>
+    <dimen name="bm_icon_size_small">@dimen/x60</dimen>
+    <dimen name="bm_num_big">@dimen/x72</dimen>
+    <dimen name="bm_margin_setting_item_right">@dimen/x60</dimen>
+    <dimen name="bm_width_button">@dimen/x460</dimen>
+    <dimen name="bm_btn_margin_top">@dimen/x60</dimen>
+    <dimen name="bm_label_icon_size">@dimen/x40</dimen>
+    <dimen name="default_corner_radius">4dp</dimen>
+    <dimen name="default_shadow_radius">4dp</dimen>
+    <dimen name="bm_icon_size_with_shadow">@dimen/x118</dimen>
+
+    <dimen name="bm_margin_item">@dimen/x40</dimen>
+    <dimen name="bm_height_item">@dimen/x120</dimen>
+    <dimen name="bm_height_card">@dimen/x320</dimen>
+</resources>

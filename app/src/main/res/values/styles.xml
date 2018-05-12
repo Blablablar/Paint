@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <style name="AmountTextStyle">
+        <item name="android:textSize">@dimen/bm_amount_size_normal</item>
+    </style>
+    <style name="SmallHintTextStyle">
+        <item name="android:textSize">@dimen/bm_hint_size_small</item>
+        <item name="android:textColor">@color/bm_hint_text_color</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="NorlmalHintTextStyle">
+        <item name="android:textSize">@dimen/bm_hint_text_size_normal</item>
+        <item name="android:textColor">@color/bm_hint_text_color_normal</item>
+    </style>
+    <style name="SubHintTextStyle">
+        <item name="android:textSize">@dimen/bm_hint_text_size_sub</item>
+        <item name="android:textColor">@color/bm_hint_text_color_normal</item>
+    </style>
+
+    <style name="NorlmalTextBarWithIcon">
+        <item name="android:textSize">@dimen/x30</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@color/bm_text_color_black</item>
+        <item name="android:paddingLeft">@dimen/margin_widget_big</item>
+        <item name="android:paddingTop">@dimen/margin_widget</item>
+        <item name="android:paddingBottom">@dimen/margin_widget</item>
+        <item name="android:drawablePadding">@dimen/margin_widget</item>
+    </style>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.airal.paint.MainActivity">
+
+    <ImageView
+        android:id="@+id/iv_home_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/homebg" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_toast"
+        android:layout_marginTop="@dimen/x50"
+        android:textSize="@dimen/x46"
+        android:layout_centerHorizontal="true"
+        android:text="请点击进入操作界面"
+        android:textColor="#FFFFFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

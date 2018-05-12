@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="default_preview">
+        <item>#ff670729</item>
+        <item>#ff7a0c2d</item>
+        <item>#ff96092d</item>
+        <item>#ffa10a37</item>
+    </string-array>
+
+    <string-array name="music">
+        <item >景天—护甲</item>
+        <item >雪见—仙凡之旅</item>
+        <item >长卿—众生平等</item>mu
+    </string-array>
+
+</resources>

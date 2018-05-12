@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SwipeLayout">
+        <attr name="drag_edge">
+            <flag name="left" value="1" />
+            <flag name="right" value="2" />
+            <flag name="top" value="4" />
+            <flag name="bottom" value="8" />
+        </attr>
+        <attr name="leftEdgeSwipeOffset" format="dimension" />
+        <attr name="rightEdgeSwipeOffset" format="dimension" />
+        <attr name="topEdgeSwipeOffset" format="dimension" />
+        <attr name="bottomEdgeSwipeOffset" format="dimension" />
+        <attr name="show_mode" format="enum">
+            <enum name="lay_down" value="0" />
+            <enum name="pull_out" value="1" />
+        </attr>
+        <attr name="clickToClose" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="superrecyclerview">
+        <attr name="layout_empty" format="reference"/>
+        <attr name="layout_moreProgress" format="reference"/>
+        <attr name="layout_progress" format="reference"/>
+        <attr name="recyclerClipToPadding" format="boolean"/>
+        <attr name="recyclerPadding" format="dimension"/>
+        <attr name="recyclerPaddingTop" format="dimension"/>
+        <attr name="recyclerPaddingBottom" format="dimension"/>
+        <attr name="recyclerPaddingLeft" format="dimension"/>
+        <attr name="recyclerPaddingRight" format="dimension"/>
+        <attr name="scrollbarStyle">
+            <flag name="insideOverlay" value="0x0"/>
+            <flag name="insideInset" value="0x01000000"/>
+            <flag name="outsideOverlay" value="0x02000000"/>
+            <flag name="outsideInset" value="0x03000000"/>
+        </attr>
+
+        <attr name="mainLayoutId" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="ShadowLayout"><attr format="dimension" name="sl_cornerRadius"/><attr format="dimension" name="sl_shadowRadius"/><attr format="color" name="sl_shadowColor"/><attr format="dimension" name="sl_dx"/><attr format="dimension" name="sl_dy"/></declare-styleable>
+
+    <declare-styleable name="WheelPicker"><attr format="reference" name="wheel_data"/><attr format="integer" name="wheel_selected_item_position"/><attr format="dimension" name="wheel_item_text_size"/><attr format="color" name="wheel_item_text_color"/><attr format="color" name="wheel_selected_item_text_color"/><attr format="boolean" name="wheel_same_width"/><attr format="string" name="wheel_maximum_width_text"/><attr format="integer" name="wheel_maximum_width_text_position"/><attr format="integer" name="wheel_visible_item_count"/><attr format="dimension" name="wheel_item_space"/><attr format="boolean" name="wheel_cyclic"/><attr format="boolean" name="wheel_indicator"/><attr format="color" name="wheel_indicator_color"/><attr format="dimension" name="wheel_indicator_size"/><attr format="boolean" name="wheel_curtain"/><attr format="color" name="wheel_curtain_color"/><attr format="boolean" name="wheel_atmospheric"/><attr format="boolean" name="wheel_curved"/><attr format="enum" name="wheel_item_align"><enum name="center" value="0"/><enum name="left" value="1"/><enum name="right" value="2"/></attr></declare-styleable>
+    <dimen name="WheelIndicatorSize">2dp</dimen>
+    <dimen name="WheelItemSpace">12dp</dimen>
+    <dimen name="WheelItemTextSize">24sp</dimen>
+    <dimen name="WheelMargins">8dp</dimen>
+    <string name="Day">D</string>
+    <string name="Month">M</string>
+    <string name="Year">Y</string>
+    <declare-styleable name="TagGroup">
+        <!-- Whether the tag group is in append mode. -->
+        <attr name="atg_isAppendMode" format="boolean" />
+        <!-- If the tag group is in append mode, what the hint of input tag. -->
+        <attr name="atg_inputHint" format="string" />
+
+        <!-- The tag view outline border color. -->
+        <attr name="atg_borderColor" format="color" />
+        <!-- The tag view text color. -->
+        <attr name="atg_textColor" format="color" />
+        <!-- The tag view background color. -->
+        <attr name="atg_backgroundColor" format="color" />
+
+        <!-- The dash outline border color, when in append mode. -->
+        <attr name="atg_dashBorderColor" format="color" />
+        <!-- The input tag hint text color, when in append mode. -->
+        <attr name="atg_inputHintColor" format="color" />
+        <!-- The input tag type text color, when in append mode. -->
+        <attr name="atg_inputTextColor" format="color" />
+
+        <!-- The checked tag view outline border color. -->
+        <attr name="atg_checkedBorderColor" format="color" />
+        <!-- The checked text color. -->
+        <attr name="atg_checkedTextColor" format="color" />
+        <!-- The checked marker color. -->
+        <attr name="atg_checkedMarkerColor" format="color" />
+        <!-- The checked tag view background color. -->
+        <attr name="atg_checkedBackgroundColor" format="color" />
+
+        <!-- The tag view background color, when the tag view is being pressed. -->
+        <attr name="atg_pressedBackgroundColor" format="color" />
+
+        <!-- The tag view outline border stroke width. -->
+        <attr name="atg_borderStrokeWidth" format="dimension" />
+        <!-- The tag view text size. -->
+        <attr name="atg_textSize" format="dimension" />
+
+        <attr name="atg_horizontalSpacing" format="dimension" />
+        <attr name="atg_verticalSpacing" format="dimension" />
+        <attr name="atg_horizontalPadding" format="dimension" />
+        <attr name="atg_verticalPadding" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="Themes">
+        <attr name="tagGroupStyle" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="ArcProgressStackView">
+        <attr name="apsv_animated" format="boolean"/>
+        <attr name="apsv_shadowed" format="boolean"/>
+        <attr name="apsv_rounded" format="boolean"/>
+        <attr name="apsv_dragged" format="boolean"/>
+        <attr name="apsv_leveled" format="boolean"/>
+
+        <attr name="apsv_typeface" format="string"/>
+        <attr name="apsv_text_color" format="color"/>
+
+        <attr name="apsv_shadow_distance" format="dimension"/>
+        <attr name="apsv_shadow_angle" format="integer"/>
+        <attr name="apsv_shadow_radius" format="dimension"/>
+        <attr name="apsv_shadow_color" format="color"/>
+
+        <attr name="apsv_animation_duration" format="integer"/>
+        <attr name="apsv_interpolator" format="reference"/>
+
+        <attr name="apsv_draw_width" format="fraction|dimension"/>
+        <attr name="apsv_model_offset" format="dimension"/>
+        <attr name="apsv_model_bg_enabled" format="boolean"/>
+        <attr name="apsv_show_progress" format="boolean"/>
+
+        <attr name="apsv_start_angle" format="integer"/>
+        <attr name="apsv_sweep_angle" format="integer"/>
+        <attr name="apsv_indicator_orientation" format="enum">
+            <enum name="vertical" value="0"/>
+            <enum name="horizontal" value="1"/>
+        </attr>
+
+        <attr name="apsv_preview_colors" format="reference"/>
+        <attr name="apsv_preview_bg" format="color"/>
+    </declare-styleable>
+</resources>
