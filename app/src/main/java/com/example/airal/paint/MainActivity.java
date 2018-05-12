@@ -62,6 +62,7 @@ public class MainActivity extends MyActivity {
                 Intent intent=new Intent(getApplicationContext(),HomePageActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
             }
         });
     }
