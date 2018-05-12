@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.widget.Toast;
 
 import com.example.airal.paint.R;
+import com.example.airal.paint.model.Record;
 
 /**
  * Created by airal on 2018/5/7.
@@ -22,8 +23,10 @@ import com.example.airal.paint.R;
 
 public class SysConfig {
     public static Bitmap bitmap=null;
+    public static Bitmap tempSaveBitmap=null;
     public static Bitmap yzbitmap=null;
     public static int musicId[]={R.raw.music_1, R.raw.music_2, R.raw.music_3};
+    public Record tikuanRecord;
 
     public static Bitmap loadBitmapFromView(View v) {
         int w = v.getWidth();

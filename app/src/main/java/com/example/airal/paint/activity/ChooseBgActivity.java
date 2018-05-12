@@ -22,17 +22,21 @@ public class ChooseBgActivity extends MyActivity implements View.OnClickListener
     ViewPager viewPager;
     ImageView imageViews[];
     int currentBg=0;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_bg);
-        viewPager=findViewById(R.id.view_pager);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        initView();
+    protected int getContentLayout() {
+        return R.layout.activity_choose_bg;
     }
 
     @Override
-    protected void initView() {
+    public void loadData() {
+
+    }
+
+    @Override
+    public void initView() {
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        viewPager=findViewById(R.id.view_pager);
         findViewById(R.id.iv_back).setOnClickListener(this);
         PagerAdapter adapter=new PagerAdapter() {
             @Override

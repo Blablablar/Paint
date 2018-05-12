@@ -25,13 +25,16 @@ import com.example.airal.paint.tool.LifecycleHandler;
 public class MainActivity extends MyActivity {
     ImageView ivHomeBg;
     TextView tvToast;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        startMusic();
-        initView();
-        startAnim();
+    protected int getContentLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void loadData() {
+        stopService(getIntent());
+        startService(getIntent());
     }
 
     public void startMusic(){
@@ -41,9 +44,8 @@ public class MainActivity extends MyActivity {
         AudioService.player = MediaPlayer.create(this, SysConfig.musicId[position]);
         Intent intent = new Intent();
         intent.setClass(this, AudioService.class);
-        stopService(intent);
-        startService(intent);
     }
+
     @Override
     public void initView(){
         //设置成全屏模式
@@ -65,6 +67,8 @@ public class MainActivity extends MyActivity {
                 finish();
             }
         });
+        startMusic();
+        startAnim();
     }
 
     int animTime=3000;

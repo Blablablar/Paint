@@ -15,17 +15,20 @@ import com.example.airal.paint.R;
  * Created by airal on 2018/4/24.
  */
 
-public class HomePageActivity extends MyActivity implements View.OnClickListener{
+public class HomePageActivity extends MyActivity{
     private LinearLayout ll_0_0;
     private LinearLayout ll_0_1;
     private LinearLayout ll_1_0;
     private LinearLayout ll_1_1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
-        initView();
+    protected int getContentLayout() {
+        return R.layout.activity_home_page;
+    }
+
+    @Override
+    public void loadData() {
+
     }
 
     @Override

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.airal.paint.R;
 import com.example.airal.paint.System.SysConfig;
+import com.example.airal.paint.model.Record;
 import com.example.airal.paint.tool.TouchImageView;
 import com.mob.MobSDK;
 
@@ -29,16 +30,19 @@ import cn.sharesdk.wechat.moments.WechatMoments;
  * Created by airal on 2018/5/5.
  */
 
-public class SharePaintActivity extends MyActivity implements View.OnClickListener{
+public class SharePaintActivity extends MyActivity{
     @Override
     public void onClick(View v) {
         Bitmap bitmap;
         bitmap=SysConfig.loadBitmapFromView(findViewById(R.id.framelayout));
+        if (bitmap != null) {
+            imageView.setImageBitmap(bitmap);
+            touchImageView.setVisibility(View.GONE);
+            SysConfig.tempSaveBitmap=bitmap;
+        }
         switch(v.getId()){
             case R.id.iv_wx:
                 if(null!=bitmap){
-                    imageView.setImageBitmap(bitmap);
-                    touchImageView.setVisibility(View.GONE);
                     share(Wechat.NAME, bitmap);
                 }else {
                     Toast.makeText(this,"保存出错",Toast.LENGTH_SHORT).show();
@@ -46,8 +50,6 @@ public class SharePaintActivity extends MyActivity implements View.OnClickListen
                 break;
             case R.id.iv_wx_moments:
                 if(null!=bitmap){
-                    imageView.setImageBitmap(bitmap);
-                    touchImageView.setVisibility(View.GONE);
                     share(WechatMoments.NAME, bitmap);
                 }else {
                     Toast.makeText(this,"保存出错",Toast.LENGTH_SHORT).show();
@@ -79,27 +81,37 @@ public class SharePaintActivity extends MyActivity implements View.OnClickListen
     RelativeLayout rlBottomBg;
     RelativeLayout rlFullScreen;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share);
-        MobSDK.init(this);
-        initView();
+    protected int getContentLayout() {
+        return R.layout.activity_share;
     }
+
+    @Override
+    public void loadData() {
+        MobSDK.init(this);
+    }
+
     TouchImageView touchImageView;
     ImageView imageView;
     @Override
     public void initView(){
+        imageView=findViewById(R.id.iv_bg);
         rlBottomBg=findViewById(R.id.bg_bottom);
         rlBottomBg.setOnClickListener(this);
         rlFullScreen=findViewById(R.id.full_screen);
         rlBottom=findViewById(R.id.rl_share);
-        imageView=findViewById(R.id.iv_bg);
+
         //bitmap=SysConfig.mergeBitmap(SysConfig.bitmap, SysConfig.yzbitmap);
+
         imageView.setImageBitmap(SysConfig.bitmap);
 
         touchImageView=findViewById(R.id.yinzhang);
         currentView=touchImageView;
         touchImageView.setImageBitmap(SysConfig.yzbitmap);
+
+        if(SysConfig.tempSaveBitmap!=null){
+            imageView.setImageBitmap(SysConfig.tempSaveBitmap);
+            touchImageView.setVisibility(View.GONE);
+        }
 
         findViewById(R.id.iv_wx).setOnClickListener(this);
         findViewById(R.id.iv_wx_moments).setOnClickListener(this);
@@ -262,5 +274,15 @@ public class SharePaintActivity extends MyActivity implements View.OnClickListen
         ObjectAnimator.ofFloat(view, View.ALPHA, start, end)
                 .setDuration(animTime)
                 .start();
+    }
+
+    public void addRecord(TouchImageView view){
+        Record record=new Record();
+        record.tag=Record.TAG_TOUCH;
+        record.view=view;
+        record.x=view.getX();
+        record.y=view.getY();
+        record.scale=view.getScaleX();
+        record.rotato=view.getRotation();
     }
 }

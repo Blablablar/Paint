@@ -103,7 +103,7 @@ public class TouchImageView extends AppCompatImageView {
                     record.x=getX();
                     record.y=getY();
                     record.scale=getScaleX();
-                    record.rotato=getRotationY();
+                    record.rotato=getRotation();
                     MyApplication.isDrag=true;
                 }
                 //计算初始的角度

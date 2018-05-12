@@ -25,7 +25,7 @@ import com.example.airal.paint.System.SysConfig;
  * Created by airal on 2018/5/5.
  */
 
-public class TikuanActivity extends MyActivity implements View.OnClickListener{
+public class TikuanActivity extends MyActivity{
     EditText editText;
     ImageView imageView;
     TextView textView1;
@@ -33,6 +33,7 @@ public class TikuanActivity extends MyActivity implements View.OnClickListener{
     LinearLayout linearLayout;
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()){
             case R.id.button:
                 if(editText.getText().length()==4){
@@ -52,11 +53,21 @@ public class TikuanActivity extends MyActivity implements View.OnClickListener{
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tikuan);
-        initView();
+    protected int getContentLayout() {
+        return R.layout.activity_tikuan;
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SysConfig.tempSaveBitmap=null;
+    }
+
+    @Override
+    public void loadData() {
+
+    }
+
     //Bitmap bitmap1;
     @Override
     public void initView(){

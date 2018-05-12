@@ -35,12 +35,15 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
     RelativeLayout relativeLayout;
     List<Record>recordList=new ArrayList<>();
     Record record=new Record();
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_paint);
-        getScreenSize();
-        initView();
+    protected int getContentLayout() {
+        return R.layout.activity_create_paint;
+    }
+
+    @Override
+    public void loadData() {
+
     }
 
     public void setRandomPos(View v){
@@ -71,6 +74,7 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
     int viewNum=0;
     @Override
     public void initView(){
+        getScreenSize();
         relativeLayout=findViewById(R.id.rl_page_view);
 
         TouchImageView touchImageView=new TouchImageView(getApplicationContext());

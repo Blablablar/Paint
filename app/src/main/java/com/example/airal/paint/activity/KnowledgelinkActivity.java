@@ -11,14 +11,17 @@ import com.example.airal.paint.R;
 
 public class KnowledgelinkActivity extends MyActivity{
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
-        initView();
+    protected int getContentLayout() {
+        return R.layout.activity_setting;
     }
 
     @Override
-    protected void initView() {
+    public void loadData() {
+
+    }
+
+    @Override
+    public void initView() {
 
     }
 }

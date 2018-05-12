@@ -25,11 +25,15 @@ import com.example.airal.paint.tool.LifecycleHandler;
 
 public class SetActivity extends MyActivity{
     Spinner spinner;
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setting);
-        initView();
+    protected int getContentLayout() {
+        return R.layout.activity_setting;
+    }
+
+    @Override
+    public void loadData() {
+
     }
 
     @Override
