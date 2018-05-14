@@ -4,12 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.os.Bundle;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -34,7 +37,6 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
     private ImageView ivBg;
     RelativeLayout relativeLayout;
     List<Record>recordList=new ArrayList<>();
-    Record record=new Record();
 
     @Override
     protected int getContentLayout() {
@@ -74,6 +76,11 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
     int viewNum=0;
     @Override
     public void initView(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().getSharedElementEnterTransition().setInterpolator(new AccelerateDecelerateInterpolator()).setDuration(400);
+            getWindow().getSharedElementReturnTransition().setInterpolator(new AccelerateDecelerateInterpolator()).setDuration(400);
+        }
+
         getScreenSize();
         relativeLayout=findViewById(R.id.rl_page_view);
 
@@ -145,6 +152,9 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
         findViewById(R.id.iv_delete).setOnClickListener(this);
         findViewById(R.id.iv_back).setOnClickListener(this);
         findViewById(R.id.iv_cancel).setOnClickListener(this);
+
+        mHandler = new MyHandler();
+        mHandler.postDelayed(r,500);
     }
 
     List bgIds=new ArrayList();
@@ -164,6 +174,16 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
 //                    }
 //                }
                 if(currentView!=null){
+                    Record record=new Record();
+                    record.tag=Record.TAG_TOUCH;
+                    record.view=currentView;
+                    record.x=currentView.getX();
+                    record.y=currentView.getY();
+                    record.scale=currentView.getScaleX();
+                    record.rotato=currentView.getRotation();
+                    record.rotatoY=currentView.getRotationY();
+                    recordList.add(record);
+
                     currentView.setRotationY(currentView.getRotationY()+180);
                 }
                 break;
@@ -199,6 +219,7 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
                             view.setScaleX(record.scale);
                             view.setScaleY(record.scale);
                             view.setRotation(record.rotato);
+                            view.setRotationY(record.rotatoY);
                             recordList.remove(recordList.size()-1);
 
                             System.out.println("CANCEL");
@@ -209,6 +230,7 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
                 break;
             //返回
             case R.id.iv_back:
+                onToolExitAnimation();
                 ActivityCompat.finishAfterTransition(this);
                 break;
             //删除
@@ -240,6 +262,8 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
     private float oldDis = 1f;
     TouchImageView currentView;
     float saveRotate;
+    Record record;
+    int time=0;
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if(currentView!=null) {
@@ -254,6 +278,14 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
                     oldDis = calDis(event);
                     if (oldDis > 10F) {
                         mode = MODE_ZOOM;
+                        time=0;
+                        record = new Record();
+                        record.tag=Record.TAG_TOUCH;
+                        record.view=currentView;
+                        record.x=currentView.getX();
+                        record.y=currentView.getY();
+                        record.scale=currentView.getScaleX();
+                        record.rotato=currentView.getRotation();
                     }
                     break;
                 case MotionEvent.ACTION_MOVE:
@@ -267,6 +299,9 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
                         if (newDis > 15F) {
                             scale = newDis / oldDis;
                             setScale(currentView,scale);
+                            if(time==0&&record!=null){
+                                recordList.add(record);
+                            }
                         }
                     }
                     break;
@@ -305,14 +340,6 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
 
     private void setScale(TouchImageView view,double temp)
     {
-        record=new Record();
-        record.tag=Record.TAG_TOUCH;
-        record.view=view;
-        record.x=view.getX();
-        record.y=view.getY();
-        record.scale=view.getScaleX();
-        record.rotato=view.getRotation();
-
         float scale=view.getScaleX()+(float) (temp-1)/2;
         if(scale>0.2&&scale<5){
             view.setScaleX(scale);
@@ -323,7 +350,92 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        onToolExitAnimation();
         ActivityCompat.finishAfterTransition(this);
     }
+
+    public void onToolInAnimation(){
+        findViewById(R.id.iv_back).setVisibility(View.VISIBLE);
+        startEnterAnim(findViewById(R.id.iv_back), top);
+
+        findViewById(R.id.ll_right_top).setVisibility(View.VISIBLE);
+        startEnterAnim(findViewById(R.id.ll_right_top), top);
+
+        findViewById(R.id.bottom_right).setVisibility(View.VISIBLE);
+        startEnterAnim(findViewById(R.id.bottom_right), bottom);
+
+        findViewById(R.id.listview).setVisibility(View.VISIBLE);
+        startEnterAnim(findViewById(R.id.listview), bottom);
+    }
+
+    public void onToolExitAnimation(){
+        startExitAnim(findViewById(R.id.iv_back), top);
+        startExitAnim(findViewById(R.id.ll_right_top), top);
+        startExitAnim(findViewById(R.id.bottom_right), bottom);
+        startExitAnim(findViewById(R.id.listview), bottom);
+    }
+
+    int animTime=400;
+//    public void aphlaAnim(View view){
+//        ObjectAnimator.ofFloat(view, View.ALPHA, 0, 1)
+//                .setDuration(animTime)
+//                .start();
+//    }
+    int bottom=0;
+    int top=1;
+    public void startEnterAnim(View view, int bottomOrTop) {
+        //底部功能按钮动画
+        Animation animation;
+        if(bottomOrTop==0){
+            animation = AnimationUtils.loadAnimation(this, R.anim.bm_dialog_enter);
+        }else{
+            animation = AnimationUtils.loadAnimation(this, R.anim.bm_dialog_top_enter);
+        }
+        animation.setDuration(animTime / 2);
+        view.startAnimation(animation);
+    }
+
+    public void startExitAnim(View view,  int bottomOrTop) {
+        //底部功能按钮动画
+        Animation animation;
+        if(bottomOrTop==0){
+            animation = AnimationUtils.loadAnimation(this, R.anim.bm_dialog_exit);
+        }else{
+            animation = AnimationUtils.loadAnimation(this, R.anim.bm_dialog_top_exit);
+        }
+        animation.setDuration(animTime / 2);
+        view.startAnimation(animation);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
+
+    private static class MyHandler extends android.os.Handler{
+    }
+    MyHandler mHandler;
+    Runnable r = new Runnable() {
+        @Override
+        public void run() {
+            onToolInAnimation();
+        }
+    };
+    Runnable exit = new Runnable() {
+        @Override
+        public void run() {
+
+        }
+    };
 }

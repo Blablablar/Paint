@@ -14,4 +14,5 @@ public class Record {
     public float x=0f;
     public float y=0f;
     public float rotato=0f;
+    public float rotatoY=0f;
 }

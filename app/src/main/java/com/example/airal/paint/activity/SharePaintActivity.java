@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.airal.paint.R;
 import com.example.airal.paint.System.SysConfig;
-import com.example.airal.paint.model.Record;
 import com.example.airal.paint.tool.TouchImageView;
 import com.mob.MobSDK;
 
@@ -276,13 +275,12 @@ public class SharePaintActivity extends MyActivity{
                 .start();
     }
 
-    public void addRecord(TouchImageView view){
-        Record record=new Record();
-        record.tag=Record.TAG_TOUCH;
-        record.view=view;
-        record.x=view.getX();
-        record.y=view.getY();
-        record.scale=view.getScaleX();
-        record.rotato=view.getRotation();
+    @Override
+    public void onBackPressed() {
+        if(rlBottom.getVisibility()==View.VISIBLE){
+            startBottomExitAnim();
+        }else{
+            finish();
+        }
     }
 }
