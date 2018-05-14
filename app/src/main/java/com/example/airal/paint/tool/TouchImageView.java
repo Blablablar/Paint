@@ -105,10 +105,10 @@ public class TouchImageView extends AppCompatImageView {
                     record.scale=getScaleX();
                     record.rotato=getRotation();
                     MyApplication.isDrag=true;
+                    System.out.println(record);
                 }
                 //计算初始的角度
                 saveRotate = calRotation(event);
-                System.out.println(saveRotate);
                 time=0;
                 //控件置于最上层
                 bringToFront();
@@ -116,8 +116,16 @@ public class TouchImageView extends AppCompatImageView {
             case MotionEvent.ACTION_MOVE:
                 if (mode == MODE_ROTATO && event.getPointerCount() == 1 && myListener!=null) {
                     float rotate = calRotation(event);
-                    System.out.println(event.getX()+" "+event.getY());
+                    //System.out.println(event.getX()+" "+event.getY());
                     setRotation(getRotation()+rotate-saveRotate);
+                    //System.out.println(getRotation()+rotate-saveRotate);
+                    if(time==0&&record!=null){
+                        if(myListener!=null){
+                            myListener.addRecord(record);
+                            System.out.println("add record");
+                        }
+                        time++;
+                    }
                     MyApplication.isDrag=true;
                 }
                 if (mode == MODE_DRAG&&event.getPointerCount() == 1) {
@@ -129,7 +137,7 @@ public class TouchImageView extends AppCompatImageView {
                     moveY = event.getRawY();
                     if(time==0&&record!=null){
                         if(myListener!=null){
-                            myListener.onItemClick(this);
+                            //myListener.onItemClick(this);
                             myListener.addRecord(record);
                             System.out.println("add record");
                         }

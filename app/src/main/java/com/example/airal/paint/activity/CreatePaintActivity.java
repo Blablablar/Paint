@@ -198,7 +198,7 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
                             view.setY(record.y);
                             view.setScaleX(record.scale);
                             view.setScaleY(record.scale);
-                            view.setRotationY(record.rotato);
+                            view.setRotation(record.rotato);
                             recordList.remove(recordList.size()-1);
 
                             System.out.println("CANCEL");
@@ -305,6 +305,14 @@ public class CreatePaintActivity extends MyActivity implements View.OnClickListe
 
     private void setScale(TouchImageView view,double temp)
     {
+        record=new Record();
+        record.tag=Record.TAG_TOUCH;
+        record.view=view;
+        record.x=view.getX();
+        record.y=view.getY();
+        record.scale=view.getScaleX();
+        record.rotato=view.getRotation();
+
         float scale=view.getScaleX()+(float) (temp-1)/2;
         if(scale>0.2&&scale<5){
             view.setScaleX(scale);
