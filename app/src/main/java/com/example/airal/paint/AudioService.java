@@ -77,7 +77,7 @@ public class AudioService extends Service implements MediaPlayer.OnCompletionLis
 //     * Created by airal on 2018/4/24.
 //     */
 //
-//    public static class MyApplication extends Application
+//    public static class AppApplication extends Application
 //    {
 //        @Override
 //        public void onCreate()

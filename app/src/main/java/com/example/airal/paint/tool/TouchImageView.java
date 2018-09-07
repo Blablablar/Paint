@@ -12,10 +12,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.example.airal.paint.R;
+import com.example.airal.paint.app.AppApplication;
 import com.example.airal.paint.model.Record;
 
 public class TouchImageView extends AppCompatImageView {
@@ -89,7 +88,7 @@ public class TouchImageView extends AppCompatImageView {
             case MotionEvent.ACTION_DOWN:// 单点接触屏幕时
                 moveX = event.getRawX();
                 moveY = event.getRawY();
-                if(MyApplication.isDrag==false){
+                if(AppApplication.isDrag==false){
                     if(calDis(event.getX(),event.getY())<getMeasuredHeight()/3){
                         mode=MODE_DRAG;
                         System.out.println("MODE_DRAG");
@@ -104,7 +103,7 @@ public class TouchImageView extends AppCompatImageView {
                     record.y=getY();
                     record.scale=getScaleX();
                     record.rotato=getRotation();
-                    MyApplication.isDrag=true;
+                    AppApplication.isDrag=true;
                     System.out.println(record);
                 }
                 //计算初始的角度
@@ -126,7 +125,7 @@ public class TouchImageView extends AppCompatImageView {
                         }
                         time++;
                     }
-                    MyApplication.isDrag=true;
+                    AppApplication.isDrag=true;
                 }
                 if (mode == MODE_DRAG&&event.getPointerCount() == 1) {
                     x = getX() + (event.getRawX() - moveX);
@@ -143,16 +142,16 @@ public class TouchImageView extends AppCompatImageView {
                         }
                         time++;
                     }
-                    MyApplication.isDrag=true;
+                    AppApplication.isDrag=true;
                 }
                 break;
             case MotionEvent.ACTION_UP:
                 // 单点离开屏幕时
-                MyApplication.isDrag=false;
+                AppApplication.isDrag=false;
                 mode=MODE_NONE;
                 break;
             case MotionEvent.ACTION_POINTER_UP:
-                MyApplication.isDrag=true;
+                AppApplication.isDrag=true;
                 // 第二个点离开屏幕时
                 mode=MODE_NONE;
                 break;

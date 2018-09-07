@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.example.airal.paint.R;
 import com.example.airal.paint.activity.create.ChooseBgActivity;
+import com.example.airal.paint.activity.knowledge.KnowledgelinkActivity;
 import com.example.airal.paint.activity.setting.SetActivity;
 
 /**
@@ -49,14 +50,15 @@ public class HomePageActivity extends BaseActivity {
         switch (v.getId()){
             case R.id.ll_0_0:
                 //设置关于
-                startActivity(new Intent(getApplicationContext(),SetActivity.class));
+                startActivity(new Intent(getApplicationContext(), SetActivity.class));
                 break;
             case R.id.ll_0_1:
                 //知识链接
+                startActivity(new Intent(getApplicationContext(), KnowledgelinkActivity.class));
                 break;
             case R.id.ll_1_0:
                 //自由创作
-                startActivity(new Intent(getApplicationContext(),ChooseBgActivity.class));
+                startActivity(new Intent(getApplicationContext(), ChooseBgActivity.class));
                 break;
             case R.id.ll_1_1:
                 //学习

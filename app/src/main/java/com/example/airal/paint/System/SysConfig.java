@@ -6,6 +6,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -16,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.airal.paint.R;
 import com.example.airal.paint.model.Record;
+
+import java.util.ArrayList;
 
 /**
  * Created by airal on 2018/5/7.
@@ -62,5 +66,44 @@ public class SysConfig {
         canvas.drawBitmap(firstBitmap, new Matrix(), null);
         canvas.drawBitmap(secondBitmap, 0, 0, null);
         return bitmap;
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        // 取 drawable 的长宽
+        int w = drawable.getIntrinsicWidth();
+        int h = drawable.getIntrinsicHeight();
+
+        // 取 drawable 的颜色格式
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                : Bitmap.Config.RGB_565;
+        // 建立对应 bitmap
+        Bitmap bitmap = Bitmap.createBitmap(w, h, config);
+        // 建立对应 bitmap 的画布
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, w, h);
+        // 把 drawable 内容画到画布中
+        drawable.draw(canvas);
+        return bitmap;
+    }
+
+    public static ArrayList resizeBitmapList(Bitmap source) {
+        ArrayList bitmapsList = new ArrayList<>();
+        int width = source.getWidth();
+        int height = source.getHeight();
+        int maxWidth = 1000;
+        int count = width%maxWidth==0?width/maxWidth:width/maxWidth+1;
+        if(width > maxWidth) {
+            for(int i=0; i<count;i++){
+                if(i != count -1) {
+                    bitmapsList.add(Bitmap.createBitmap(source,maxWidth * i, 0,maxWidth, height));
+                    System.out.println(maxWidth * i);
+                }else{
+                    bitmapsList.add(Bitmap.createBitmap(source,maxWidth * i, 0,width-maxWidth * i, height));
+                }
+            }
+        }else{
+            bitmapsList.add(source);
+        }
+        return bitmapsList;
     }
 }
