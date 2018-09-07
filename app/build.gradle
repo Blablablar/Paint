@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.mob.sdk'
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -25,43 +25,47 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-
-//    compile 'cn.bmob.android:http-legacy:1.0'
-//    compile 'cn.bmob.android:bmob-sdk:3.5.0'
-//    compile 'com.squareup.okhttp:okhttp:2.4.0'//CDN文件服务使用okhttp相关包进行文件的上传和下载（必填）
-//    compile 'com.squareup.okio:okio:1.4.0'
+    //    compile 'cn.bmob.android:http-legacy:1.0'
+    //    compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    //    compile 'com.squareup.okhttp:okhttp:2.4.0'//CDN文件服务使用okhttp相关包进行文件的上传和下载（必填）
+    //    compile 'com.squareup.okio:okio:1.4.0'
+    implementation files('libs/umeng-common-1.5.3.jar')
+    implementation files('libs/umeng-share-wechat-simplify-6.9.2.jar')
+    compile files('libs/umeng-share-core-6.9.2.jar')
+    compile files('libs/umeng-sharetool-6.9.2.jar')
+    implementation 'com.facebook.fresco:fresco:1.10.0'
 }
-
-MobSDK {
-    appKey "25a3827237e33"
-    appSecret "a5ce8edba140cf9c240e28a3277fdcfd"
-
-    ShareSDK {
-        //平台配置信息
-        devInfo {
-            SinaWeibo {
-                appKey "568898243"
-                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
-                callbackUri "http://www.sharesdk.cn"
-                shareByAppClient false
-            }
-            Wechat {
-                appId "wxe99afbcfaf66097d"
-                appSecret "424210e0bf1014fd9697bb6839387570"
-            }
-            WechatMoments {
-                appId "wxe99afbcfaf66097d"
-                appSecret "424210e0bf1014fd9697bb6839387570"
-            }
-            QQ {
-                appId "100371282"
-                appKey "aed9b0303e3ed1e27bae87c33761161d"
-            }
-            Facebook {
-                appKey "1412473428822331"
-                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
-                callbackUri "https://mob.com"
-            }
-        }
-    }
-}
+//
+//MobSDK {
+//    appKey "25a3827237e33"
+//    appSecret "a5ce8edba140cf9c240e28a3277fdcfd"
+//
+//    ShareSDK {
+//        //平台配置信息
+//        devInfo {
+//            SinaWeibo {
+//                appKey "568898243"
+//                appSecret "38a4f8204cc784f81f9f0daaf31e02e3"
+//                callbackUri "http://www.sharesdk.cn"
+//                shareByAppClient false
+//            }
+//            Wechat {
+//                appId "wxe99afbcfaf66097d"
+//                appSecret "424210e0bf1014fd9697bb6839387570"
+//            }
+//            WechatMoments {
+//                appId "wxe99afbcfaf66097d"
+//                appSecret "424210e0bf1014fd9697bb6839387570"
+//            }
+//            QQ {
+//                appId "100371282"
+//                appKey "aed9b0303e3ed1e27bae87c33761161d"
+//            }
+//            Facebook {
+//                appKey "1412473428822331"
+//                appSecret "a42f4f3f867dc947b9ed6020c2e93558"
+//                callbackUri "https://mob.com"
+//            }
+//        }
+//    }
+//}

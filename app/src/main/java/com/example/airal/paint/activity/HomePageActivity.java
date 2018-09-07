@@ -1,25 +1,23 @@
 package com.example.airal.paint.activity;
 
 import android.content.Intent;
-import android.graphics.Typeface;
-import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.airal.paint.R;
+import com.example.airal.paint.activity.create.ChooseBgActivity;
+import com.example.airal.paint.activity.setting.SetActivity;
 
 /**
  * Created by airal on 2018/4/24.
  */
 
-public class HomePageActivity extends MyActivity{
-    private LinearLayout ll_0_0;
-    private LinearLayout ll_0_1;
-    private LinearLayout ll_1_0;
-    private LinearLayout ll_1_1;
+public class HomePageActivity extends BaseActivity {
+    private ImageView ll_0_0;
+    private ImageView ll_0_1;
+    private ImageView ll_1_0;
+    private ImageView ll_1_1;
 
     @Override
     protected int getContentLayout() {
@@ -50,14 +48,18 @@ public class HomePageActivity extends MyActivity{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ll_0_0:
+                //设置关于
+                startActivity(new Intent(getApplicationContext(),SetActivity.class));
                 break;
             case R.id.ll_0_1:
+                //知识链接
                 break;
             case R.id.ll_1_0:
+                //自由创作
                 startActivity(new Intent(getApplicationContext(),ChooseBgActivity.class));
                 break;
             case R.id.ll_1_1:
-                startActivity(new Intent(getApplicationContext(),SetActivity.class));
+                //学习
                 break;
             default:
                 break;
@@ -67,7 +69,6 @@ public class HomePageActivity extends MyActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
     }
 }
 

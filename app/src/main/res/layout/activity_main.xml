@@ -4,24 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.airal.paint.MainActivity">
+    tools:context="com.example.airal.paint.LaunchActivity">
 
-    <ImageView
-        android:id="@+id/iv_home_bg"
+    <com.example.airal.paint.tool.HorizontalListView
+        android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/homebg" />
+        android:layout_height="match_parent">
+    </com.example.airal.paint.tool.HorizontalListView>
 
     <TextView
         android:visibility="gone"
         android:id="@+id/tv_toast"
-        android:layout_marginTop="@dimen/x50"
-        android:textSize="@dimen/x46"
-        android:layout_centerHorizontal="true"
-        android:text="请点击进入操作界面"
-        android:textColor="#FFFFFF"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_width="@dimen/x250"
+        android:layout_height="@dimen/x375"
+        android:background="@drawable/entrance"/>
 
 </RelativeLayout>

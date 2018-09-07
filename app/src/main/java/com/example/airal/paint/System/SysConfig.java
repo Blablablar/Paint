@@ -25,7 +25,7 @@ public class SysConfig {
     public static Bitmap bitmap=null;
     public static Bitmap tempSaveBitmap=null;
     public static Bitmap yzbitmap=null;
-    public static int musicId[]={R.raw.music_1, R.raw.music_2, R.raw.music_3};
+    public static int musicId[]={R.raw.music_1, R.raw.music_2, R.raw.music_3, R.raw.music_4, R.raw.music_5};
     public Record tikuanRecord;
 
     public static Bitmap loadBitmapFromView(View v) {
@@ -50,6 +50,9 @@ public class SysConfig {
                 MediaStore.Images.Media.insertImage(activity.getContentResolver(), bitmap,"title", "description");
                 Toast.makeText(activity.getApplicationContext(),"保存成功",Toast.LENGTH_SHORT).show();
             }
+        } else {
+            MediaStore.Images.Media.insertImage(activity.getContentResolver(), bitmap, "title", "description");
+            Toast.makeText(activity.getApplicationContext(), "保存成功", Toast.LENGTH_SHORT).show();
         }
     }
 

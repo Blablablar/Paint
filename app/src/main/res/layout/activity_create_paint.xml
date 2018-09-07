@@ -3,8 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
     <FrameLayout
         android:id="@+id/framelayout"
@@ -29,6 +28,7 @@
 
 
     <com.example.airal.paint.tool.HorizontalListView
+        android:visibility="gone"
         android:layout_toLeftOf="@+id/bottom_right"
         android:id="@+id/listview"
         android:layout_alignParentBottom="true"
@@ -38,6 +38,7 @@
     </com.example.airal.paint.tool.HorizontalListView>
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/bottom_right"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
@@ -63,6 +64,8 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_right_top"
         android:layout_alignParentRight="true"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
@@ -86,6 +89,7 @@
     </LinearLayout>
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/iv_back"
         android:padding="@dimen/x10"
         android:layout_width="@dimen/x100"
