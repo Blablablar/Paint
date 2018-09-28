@@ -58,10 +58,11 @@ public class LaunchActivity extends BaseActivity {
 
     @Override
     public void initView(){
-        List<Bitmap>list = SysConfig.resizeBitmapList(SysConfig.drawableToBitmap(getResources().getDrawable(R.mipmap.homebg1)));
+        List<Bitmap>list = SysConfig.resizeBitmapList(SysConfig.drawableToBitmap(getResources().getDrawable(R.mipmap.homebg3)));
         ItemAdapter itemAdapter = new ItemAdapter(LaunchActivity.this, list);
         listView = (HorizontalListView) findViewById(R.id.listview);
         listView.setAdapter(itemAdapter);
+        listView.scrollTo(listView.mMaxX);
         listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

@@ -28,6 +28,7 @@ public class TicaiActivity extends BaseActivity {
         ItemAdapter itemAdapter = new ItemAdapter(getApplicationContext(), list);
         listView = (HorizontalListView) findViewById(R.id.listview);
         listView.setAdapter(itemAdapter);
+        listView.scrollTo(listView.mMaxX);
     }
 
     @Override
