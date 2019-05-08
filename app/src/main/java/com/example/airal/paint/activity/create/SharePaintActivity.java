@@ -65,6 +65,9 @@ public class SharePaintActivity extends BaseActivity {
                 startAlphaAnim(rlBottomBg,1,0, bottomAnimTime/2);
                 startBottomExitAnim();
                 break;
+            case R.id.iv_back:
+                finish();
+                break;
             default:
                 break;
         }
@@ -106,6 +109,7 @@ public class SharePaintActivity extends BaseActivity {
             touchImageView.setVisibility(View.GONE);
         }
 
+        findViewById(R.id.iv_back).setOnClickListener(this);
         findViewById(R.id.iv_wx).setOnClickListener(this);
         findViewById(R.id.iv_wx_moments).setOnClickListener(this);
         findViewById(R.id.iv_share).setOnClickListener(this);

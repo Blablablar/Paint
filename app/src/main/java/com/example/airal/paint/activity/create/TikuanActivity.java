@@ -76,7 +76,7 @@ public class TikuanActivity extends BaseActivity {
         button.setOnClickListener(this);
         editText=findViewById(R.id.editText);
         imageView=findViewById(R.id.imageview);
-        Bitmap bitmap1= BitmapFactory.decodeResource(getResources(), R.mipmap.yinzhang);
+        Bitmap bitmap1= BitmapFactory.decodeResource(getResources(), R.mipmap.yinzhang3);
         imageView.setImageBitmap(bitmap1);
 
         findViewById(R.id.iv_next).setOnClickListener(this);
@@ -100,7 +100,7 @@ public class TikuanActivity extends BaseActivity {
     Runnable r = new Runnable() {
         @Override
         public void run() {
-            Bitmap bitmap1= decodeResource(getResources(), R.mipmap.yinzhang);
+            Bitmap bitmap1= decodeResource(getResources(), R.mipmap.yinzhang3);
             Bitmap bitmap2= SysConfig.loadBitmapFromView(linearLayout);
             Bitmap mergeBitmap=SysConfig.mergeBitmap(bitmap1,bitmap2);
             imageView.setImageBitmap(mergeBitmap);

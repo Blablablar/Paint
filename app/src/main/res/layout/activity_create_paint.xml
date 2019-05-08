@@ -3,29 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/theme_color">
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
+            android:layout_marginBottom="@dimen/x150"
+            android:layout_centerInParent="true"
             android:id="@+id/iv_backgroud"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@mipmap/homepage"
+            android:src="@drawable/bg1"
             android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
             android:transitionName="bg"/>
 
         <RelativeLayout
             android:id="@+id/rl_page_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"></RelativeLayout>
 
-    </FrameLayout>
-
+    </RelativeLayout>
 
     <com.example.airal.paint.tool.HorizontalListView
         android:visibility="gone"
@@ -33,8 +36,7 @@
         android:id="@+id/listview"
         android:layout_alignParentBottom="true"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/x90"
-        android:background="@color/toolbar_color">
+        android:layout_height="@dimen/x120">
     </com.example.airal.paint.tool.HorizontalListView>
 
     <LinearLayout
@@ -54,12 +56,12 @@
             android:layout_height="@dimen/x100"
             android:src="@mipmap/duicheng"/>
 
-        <ImageView
-            android:id="@+id/iv_bottom_func_2"
-            android:padding="@dimen/x10"
-            android:layout_width="@dimen/x120"
-            android:layout_height="@dimen/x100"
-            android:src="@mipmap/next"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_bottom_func_2"-->
+            <!--android:padding="@dimen/x10"-->
+            <!--android:layout_width="@dimen/x120"-->
+            <!--android:layout_height="@dimen/x100"-->
+            <!--android:src="@mipmap/next"/>-->
 
     </LinearLayout>
 
@@ -91,9 +93,49 @@
     <ImageView
         android:visibility="gone"
         android:id="@+id/iv_back"
-        android:padding="@dimen/x10"
-        android:layout_width="@dimen/x100"
-        android:layout_height="@dimen/x100"
-        android:src="@mipmap/back"/>
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/x180"
+        android:src="@drawable/icon_back"/>
+
+    <ImageView
+        android:id="@+id/iv_bottom_func_2"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/x180"
+        android:src="@drawable/next"/>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_left_fuc"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_zhiwu"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x150"
+            android:adjustViewBounds="true"
+            android:src="@drawable/sucai_type_1"/>
+
+        <ImageView
+            android:id="@+id/iv_renwu"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x150"
+            android:adjustViewBounds="true"
+            android:src="@drawable/sucai_type_2"/>
+
+        <ImageView
+            android:id="@+id/iv_shanshi"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/x150"
+            android:adjustViewBounds="true"
+            android:src="@drawable/sucai_type_3"/>
+    </LinearLayout>
 
 </RelativeLayout>

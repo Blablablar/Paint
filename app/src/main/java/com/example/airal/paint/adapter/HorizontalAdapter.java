@@ -19,9 +19,9 @@ import java.util.List;
 
 public class HorizontalAdapter extends BaseAdapter implements View.OnClickListener{
     private LayoutInflater mInflater;
-    private List list = new ArrayList();
+    private List<Integer> list = new ArrayList();
 
-    public HorizontalAdapter(Context context, List imgIds){
+    public HorizontalAdapter(Context context, List<Integer> imgIds){
         list.clear();
         list.addAll(imgIds);
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -48,7 +48,7 @@ public class HorizontalAdapter extends BaseAdapter implements View.OnClickListen
             holder = (ViewHolder) convertView.getTag();
         }
         holder.imageView.setImageResource((int)list.get(position));
-        holder.imageView.setOnClickListener(this);
+        //holder.imageView.setOnClickListener(this);
         return convertView;
     }
 
@@ -64,21 +64,21 @@ public class HorizontalAdapter extends BaseAdapter implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.image:
-                myListener.onItemClick((ImageView) v);
+                //myListener.onItemClick((ImageView) v);
                 break;
             default:
                 break;
         }
     }
 
-    public void setItemListener(onItemClickListener myListener) {
-        this.myListener = myListener;
-    }
-
-    public onItemClickListener myListener;
-
-    public interface onItemClickListener{
-        void onItemClick(ImageView v);
-    }
+//    public void setItemListener(onItemClickListener myListener) {
+//        this.myListener = myListener;
+//    }
+//
+//    public onItemClickListener myListener;
+//
+//    public interface onItemClickListener{
+//        void onItemClick(ImageView v);
+//    }
 }
 

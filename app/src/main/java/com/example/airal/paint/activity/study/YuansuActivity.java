@@ -1,4 +1,4 @@
-package com.example.airal.paint.activity.knowledge;
+package com.example.airal.paint.activity.study;
 
 import android.graphics.Bitmap;
 
@@ -11,10 +11,10 @@ import com.example.airal.paint.tool.HorizontalListView;
 import java.util.List;
 
 /**
- * Created by airal on 2018/9/7.
+ * Created by airal on 2018/10/9.
  */
 
-public class GuohuaHuafuActivity extends BaseActivity {
+public class YuansuActivity extends BaseActivity {
     private HorizontalListView listView;
 
     @Override
@@ -24,7 +24,7 @@ public class GuohuaHuafuActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        List<Bitmap> list = SysConfig.resizeBitmapList(SysConfig.drawableToBitmap(getResources().getDrawable(R.mipmap.huafu)));
+        List<Bitmap> list = SysConfig.resizeBitmapList(SysConfig.drawableToBitmap(getResources().getDrawable(R.drawable.gsxl_yuansu)));
         ItemAdapter itemAdapter = new ItemAdapter(getApplicationContext(), list);
         listView = (HorizontalListView) findViewById(R.id.listview);
         listView.setAdapter(itemAdapter);
@@ -36,3 +36,5 @@ public class GuohuaHuafuActivity extends BaseActivity {
 
     }
 }
+
+

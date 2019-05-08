@@ -1,4 +1,4 @@
-package com.example.airal.paint.activity.knowledge.type;
+package com.example.airal.paint.activity.study;
 
 import android.content.Intent;
 import android.view.View;
@@ -7,14 +7,15 @@ import com.example.airal.paint.R;
 import com.example.airal.paint.activity.BaseActivity;
 
 /**
- * Created by airal on 2018/9/7.
+ * Created by airal on 2018/10/10.
  */
 
-public class GuohuaLeiBieActivity extends BaseActivity{
+public class StudyHomeActivity extends BaseActivity {
     @Override
     protected int getContentLayout() {
-        return R.layout.activity_type;
+        return R.layout.activity_study_home;
     }
+
 
     @Override
     public void initView() {
@@ -22,6 +23,7 @@ public class GuohuaLeiBieActivity extends BaseActivity{
         findViewById(R.id.iv_type_2).setOnClickListener(this);
         findViewById(R.id.iv_type_3).setOnClickListener(this);
         findViewById(R.id.iv_type_4).setOnClickListener(this);
+        findViewById(R.id.iv_type_5).setOnClickListener(this);
     }
 
     @Override
@@ -29,16 +31,19 @@ public class GuohuaLeiBieActivity extends BaseActivity{
         super.onClick(v);
         switch (v.getId()){
             case R.id.iv_type_1:
-                startActivity(new Intent(GuohuaLeiBieActivity.this, BiaoxianActivity.class));
+                //startActivity(new Intent(this, SeHomePageActivity.class));
                 break;
             case R.id.iv_type_2:
-                startActivity(new Intent(GuohuaLeiBieActivity.this, JiFaActivity.class));
+                //startActivity(new Intent(this, JiFaActivity.class));
                 break;
             case R.id.iv_type_3:
-                startActivity(new Intent(GuohuaLeiBieActivity.this, ColorActivity.class));
+                //startActivity(new Intent(this, ColorActivity.class));
                 break;
             case R.id.iv_type_4:
-                startActivity(new Intent(GuohuaLeiBieActivity.this, TicaiActivity.class));
+                //startActivity(new Intent(this, TicaiActivity.class));
+                break;
+            case R.id.iv_type_5:
+                startActivity(new Intent(this, JianShanHomeActivity.class));
                 break;
             default:
                 break;

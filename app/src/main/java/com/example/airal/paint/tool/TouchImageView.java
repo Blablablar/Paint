@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.PointF;
+import android.graphics.drawable.Drawable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -49,6 +50,7 @@ public class TouchImageView extends AppCompatImageView {
     }
 
     private void init() {
+        setMaxWidth(getResources().getDimensionPixelSize(R.dimen.x100));
         /*
          * 实例化对象
          */
@@ -62,15 +64,37 @@ public class TouchImageView extends AppCompatImageView {
         WindowManager manager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         manager.getDefaultDisplay().getMetrics(outMetrics);
-        width = outMetrics.heightPixels/5;
+        width = outMetrics.heightPixels/7;
         int Screenheight = outMetrics.heightPixels;
 
         /*
          * 设置图片资源
          */
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.duicheng);
-        bitmap = Bitmap.createScaledBitmap(bitmap, width, width, true);
-        setImageBitmap(bitmap);
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.duicheng);
+//        bitmap = Bitmap.createScaledBitmap(bitmap, width, width, true);
+//        setImageBitmap(bitmap);
+
+//        this.x = getContext().getResources().getDimensionPixelSize(R.dimen.x100);
+//        this.y = getContext().getResources().getDimensionPixelSize(R.dimen.x100);
+        this.setScaleType(ScaleType.CENTER_INSIDE);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Drawable drawable = getDrawable();
+        if(drawable != null){
+            int width = drawable.getMinimumWidth();
+            int height = drawable.getMinimumHeight();
+            float scale = (float)width/height;
+
+            //强制根据图片原有比例，重新计算ImageView显示区域宽度
+            int heightMeasure = MeasureSpec.getSize(heightMeasureSpec);
+            int widthMeasure = (int)(heightMeasure * scale);
+
+            //并设置为MeasureSpec.EXACTLY精确模式保证之后的super.onMeasure()不再调整
+            widthMeasureSpec = MeasureSpec.makeMeasureSpec(widthMeasure, MeasureSpec.EXACTLY);
+        }
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
     float moveX;

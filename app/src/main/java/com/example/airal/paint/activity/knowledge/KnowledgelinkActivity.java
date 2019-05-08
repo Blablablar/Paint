@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.example.airal.paint.R;
 import com.example.airal.paint.activity.BaseActivity;
+import com.example.airal.paint.activity.knowledge.tool.GuohuaToolActivity;
 import com.example.airal.paint.activity.knowledge.type.GuohuaLeiBieActivity;
 
 /**
@@ -33,10 +34,10 @@ public class KnowledgelinkActivity extends BaseActivity {
                 //startActivity(new Intent(KnowledgelinkActivity.this, GushuActivity.class));
                 break;
             case R.id.iv_zhishi_2:
-                //startActivity(new Intent(KnowledgelinkActivity.this, GuohuaToolActivity.class));
+                startActivity(new Intent(KnowledgelinkActivity.this, GuohuaToolActivity.class));
                 break;
             case R.id.iv_zhishi_3:
-                //startActivity(new Intent(KnowledgelinkActivity.this, GuohuaHuafuActivity.class));
+                startActivity(new Intent(KnowledgelinkActivity.this, GuohuaHuafuActivity.class));
                 break;
             case R.id.iv_zhishi_4:
                 startActivity(new Intent(KnowledgelinkActivity.this, GuohuaLeiBieActivity.class));

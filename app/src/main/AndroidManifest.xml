@@ -38,7 +38,7 @@
         <activity android:name=".activity.setting.TeamIntroduceActivity" android:screenOrientation="landscape" />
         <activity android:name=".activity.setting.AboutActivity" android:screenOrientation="landscape" />
         <activity android:name=".activity.knowledge.GushuActivity" android:screenOrientation="landscape" />
-        <activity android:name=".activity.knowledge.GuohuaToolActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.knowledge.tool.GuohuaToolActivity" android:screenOrientation="landscape" />
         <activity android:name=".activity.knowledge.GuohuaHuafuActivity" android:screenOrientation="landscape" />
         <activity android:name=".activity.knowledge.type.GuohuaLeiBieActivity" android:screenOrientation="landscape" />
         <activity android:name=".activity.knowledge.KnowledgelinkActivity" android:screenOrientation="landscape" />
@@ -46,7 +46,16 @@
         <activity android:name=".activity.knowledge.type.ColorActivity" android:screenOrientation="landscape" />
         <activity android:name=".activity.knowledge.type.JiFaActivity" android:screenOrientation="landscape" />
         <activity android:name=".activity.knowledge.type.TicaiActivity" android:screenOrientation="landscape" />
-
+        <activity android:name=".activity.study.GuanShanImgActivity" android:screenOrientation="landscape" />
+        <activity android:name=".BaseWebViewActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.study.YuansuActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.study.GoutuActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.study.JifaActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.knowledge.tool.se.SeHomePageActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.knowledge.tool.se.SeOneActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.knowledge.tool.se.SeTwoActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.study.StudyHomeActivity" android:screenOrientation="landscape" />
+        <activity android:name=".activity.study.JianShanHomeActivity" android:screenOrientation="landscape" />
 
         <service android:name=".AudioService" />
 

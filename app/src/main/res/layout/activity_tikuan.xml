@@ -3,32 +3,66 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/theme_color">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/iv_next"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/x180"
+        android:src="@drawable/next"/>
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginRight="@dimen/x30"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/x120"
-        android:background="@drawable/radius_top_left"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="@dimen/x120"
-            android:layout_height="@dimen/x100"
-            android:src="@mipmap/back"/>
-
-    </LinearLayout>
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/x180"
+        android:src="@drawable/icon_back"/>
 
     <LinearLayout
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/black">
+        android:gravity="center">
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请输入文字："
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="@dimen/x500"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text=""
+                android:lines="1"/>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="生成印章"/>
+        </LinearLayout>
+
+
+        <!--android:paddingLeft="10px"-->
+        <!--android:paddingTop="4px"-->
+
+
+        <LinearLayout
+            android:layout_marginTop="@dimen/x100"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -37,90 +71,55 @@
             <ImageView
                 android:id="@+id/imageview"
                 android:layout_width="200px"
-                android:layout_height="200px" />
+                android:layout_height="200px"
+                android:src="@mipmap/yinzhang3"/>
 
             <!--<android.support.v7.widget.AppCompatSpinner-->
-                <!--android:id="@+id/spinner"-->
-                <!--android:layout_marginLeft="@dimen/x50"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@color/black"-->
-                <!--/>-->
+            <!--android:id="@+id/spinner"-->
+            <!--android:layout_marginLeft="@dimen/x50"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/black"-->
+            <!--/>-->
+
 
         </LinearLayout>
 
+    </LinearLayout>
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="@dimen/x500"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="华东师大"
-            android:lines="1"/>
 
-        <Button
-            android:id="@+id/button"
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible"
+        android:id="@+id/linearLayout"
+        android:orientation="horizontal"
+        android:layout_width="330px"
+        android:layout_height="334px"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textview_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="生成印章"/>
-        <!--android:paddingLeft="10px"-->
-        <!--android:paddingTop="4px"-->
-        <LinearLayout
-            android:id="@+id/linearLayout"
-            android:orientation="horizontal"
-            android:layout_width="200px"
-            android:layout_height="200px"
-            android:gravity="center">
+            android:textColor="@color/white"
+            android:textSize="130px"
+            android:text="印章"
+            android:ems="1"
+            android:includeFontPadding="false"
+            />
 
-                <TextView
-                    android:id="@+id/textview_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="80px"
-                    android:text="印章"
-                    android:ems="1"
-                    android:includeFontPadding="false"
-                    />
-
-                <TextView
-                    android:id="@+id/textview_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="80px"
-                    android:text="生成"
-                    android:ems="1"
-                    android:includeFontPadding="false"
-                    />
-
-        </LinearLayout>
-
+        <TextView
+            android:id="@+id/textview_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="130px"
+            android:text="生成"
+            android:ems="1"
+            android:includeFontPadding="false"
+            />
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x150"
-        android:layout_alignParentBottom="true">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/bottom_right"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/x120"
-        android:background="@drawable/radius_bottom_right"
-        android:gravity="center_vertical">
-
-        <ImageView
-            android:id="@+id/iv_next"
-            android:layout_width="@dimen/x120"
-            android:layout_height="@dimen/x100"
-            android:src="@mipmap/next"/>
-
-    </LinearLayout>
 
 </RelativeLayout>

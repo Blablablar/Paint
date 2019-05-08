@@ -10,6 +10,8 @@
         android:layout_marginRight="@dimen/x10"
         android:layout_width="@dimen/x100"
         android:layout_height="@dimen/x100"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/bm_icon_0"/>
+        android:scaleType="centerInside"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/renwu_1"/>
+
 </LinearLayout>

@@ -4,15 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -39,6 +42,8 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
     private ImageView ivBg;
     RelativeLayout relativeLayout;
     List<Record>recordList=new ArrayList<>();
+    List<Integer> imgIds=new ArrayList();
+    private HorizontalAdapter horizontalAdapter;
 
     @Override
     protected int getContentLayout() {
@@ -52,17 +57,17 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
 
     public void setRandomPos(View v){
         Random rand = new Random();
-        int wMax=screenwidth-screenheight/5;
+        int wMax=screenwidth-100;
         int wMin=100;
 
-        int hMax=screenheight/5*4;
+        int hMax=screenheight-100;
         int hMin=100;
 
         int w = rand.nextInt(wMax)%(wMax-wMin+1) + wMin;
         int h = rand.nextInt(hMax)%(hMax-hMin+1) + hMin;
 
         v.setTranslationX(w);
-        v.setTranslationY(h);
+        v.setTranslationY(-h);
     }
 
     int screenwidth=0;
@@ -91,39 +96,60 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
         //设置成全屏模式
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         horizontalListView=findViewById(R.id.listview);
-        List imgIds=new ArrayList();
-        imgIds.add(R.mipmap.bm_icon_0);
-        imgIds.add(R.mipmap.bm_icon_1);
-        imgIds.add(R.mipmap.bm_icon_2);
-        imgIds.add(R.mipmap.bm_icon_3);
-        imgIds.add(R.mipmap.bm_icon_4);
-        imgIds.add(R.mipmap.bm_icon_0);
-        imgIds.add(R.mipmap.bm_icon_1);
-        imgIds.add(R.mipmap.bm_icon_2);
-        imgIds.add(R.mipmap.bm_icon_3);
-        imgIds.add(R.mipmap.bm_icon_4);
-        imgIds.add(R.mipmap.bm_icon_0);
-        imgIds.add(R.mipmap.bm_icon_1);
-        imgIds.add(R.mipmap.bm_icon_2);
-        imgIds.add(R.mipmap.bm_icon_3);
-        imgIds.add(R.mipmap.bm_icon_4);
-        HorizontalAdapter horizontalAdapter=new HorizontalAdapter(this,imgIds);
-        horizontalAdapter.setItemListener(new HorizontalAdapter.onItemClickListener(){
+        initZhiwu();
+        horizontalAdapter=new HorizontalAdapter(this,imgIds);
+//        horizontalAdapter.setItemListener(new HorizontalAdapter.onItemClickListener(){
+//            @Override
+//            public void onItemClick(ImageView v) {
+//                viewNum++;
+//                TouchImageView view=new TouchImageView(getApplicationContext());
+//                view.setImageDrawable(v.getDrawable());
+//                relativeLayout.addView(view);
+//                setRandomPos(view);
+//                currentView=view;
+//                Record record=new Record();
+//                record.tag=Record.TAG_ADD;
+//                record.view=view;
+//                recordList.add(record);
+//                System.out.println(recordList.size());
+//
+//                view.setImageListener(new TouchImageView.onImageClickListener() {
+//                    @Override
+//                    public void onItemClick(View v) {
+//                        if(mode==MODE_NONE){
+//                            currentView=(TouchImageView) v;
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void addRecord(Record record) {
+//                        recordList.add(record);
+//                        //System.out.println(recordList.size());
+//                    }
+//                });
+//            }
+//        });
+        horizontalListView.setAdapter(horizontalAdapter);
+        horizontalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(ImageView v) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 viewNum++;
-                TouchImageView view=new TouchImageView(getApplicationContext());
-                view.setImageDrawable(v.getDrawable());
-                relativeLayout.addView(view);
-                setRandomPos(view);
-                currentView=view;
+                TouchImageView appendView=new TouchImageView(getApplicationContext());
+                appendView.setImageDrawable(getResources().getDrawable((int)imgIds.get(position)));
+                ViewGroup parentView = (ViewGroup) appendView.getParent();
+                if (parentView != null) {
+                    parentView.removeAllViews();
+                }
+                relativeLayout.addView(appendView);
+                setRandomPos(appendView);
+                currentView=appendView;
                 Record record=new Record();
                 record.tag=Record.TAG_ADD;
-                record.view=view;
+                record.view=appendView;
                 recordList.add(record);
                 System.out.println(recordList.size());
 
-                view.setImageListener(new TouchImageView.onImageClickListener() {
+                appendView.setImageListener(new TouchImageView.onImageClickListener() {
                     @Override
                     public void onItemClick(View v) {
                         if(mode==MODE_NONE){
@@ -139,12 +165,12 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
                 });
             }
         });
-        horizontalListView.setAdapter(horizontalAdapter);
 
         ivBg=findViewById(R.id.iv_backgroud);
-        bgIds.add(R.mipmap.backgroud1);
-        bgIds.add(R.mipmap.backgroud2);
-        bgIds.add(R.mipmap.backgroud3);
+        bgIds.add(R.drawable.bg1);
+        bgIds.add(R.drawable.bg2);
+        bgIds.add(R.drawable.bg3);
+        bgIds.add(R.drawable.bg4);
         currentBg=getIntent().getIntExtra("position",0);
         ivBg.setImageResource((int)bgIds.get(currentBg));
 
@@ -155,6 +181,9 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
         findViewById(R.id.iv_back).setOnClickListener(this);
         findViewById(R.id.iv_cancel).setOnClickListener(this);
 
+        findViewById(R.id.iv_renwu).setOnClickListener(this);
+        findViewById(R.id.iv_zhiwu).setOnClickListener(this);
+        findViewById(R.id.iv_shanshi).setOnClickListener(this);
         mHandler = new MyHandler();
         mHandler.postDelayed(r,500);
     }
@@ -194,7 +223,7 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
 //                currentBg=changeCurrentBg(currentBg);
 //                ivBg.setImageResource((int)bgIds.get(currentBg));
 
-                FrameLayout frameLayout=findViewById(R.id.framelayout);
+                RelativeLayout frameLayout=findViewById(R.id.framelayout);
                 SysConfig.bitmap= SysConfig.loadBitmapFromView(frameLayout);
                 //SysConfig.saveBitmap(this,SysConfig.bitmap);
 
@@ -238,6 +267,24 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
             //删除
             case R.id.iv_delete:
                 relativeLayout.removeAllViews();
+                break;
+            //人物素材
+            case R.id.iv_renwu:
+                initRenwu();
+                horizontalAdapter=new HorizontalAdapter(this,imgIds);
+                horizontalListView.setAdapter(horizontalAdapter);
+                break;
+            //植物素材
+            case R.id.iv_zhiwu:
+                initZhiwu();
+                horizontalAdapter=new HorizontalAdapter(this,imgIds);
+                horizontalListView.setAdapter(horizontalAdapter);
+                break;
+            //山石素材
+            case R.id.iv_shanshi:
+                initShanshi();
+                horizontalAdapter=new HorizontalAdapter(this,imgIds);
+                horizontalListView.setAdapter(horizontalAdapter);
                 break;
             default:
                 break;
@@ -343,7 +390,7 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
     private void setScale(TouchImageView view,double temp)
     {
         float scale=view.getScaleX()+(float) (temp-1)/2;
-        if(scale>0.2&&scale<5){
+        if(scale>0.15&&scale<4){
             view.setScaleX(scale);
             view.setScaleY(scale);
         }
@@ -357,14 +404,17 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
     }
 
     public void onToolInAnimation(){
+        findViewById(R.id.ll_left_fuc).setVisibility(View.VISIBLE);
+        startEnterAnim(findViewById(R.id.ll_left_fuc), top);
+
         findViewById(R.id.iv_back).setVisibility(View.VISIBLE);
         startEnterAnim(findViewById(R.id.iv_back), top);
 
-        findViewById(R.id.ll_right_top).setVisibility(View.VISIBLE);
-        startEnterAnim(findViewById(R.id.ll_right_top), top);
+//        findViewById(R.id.ll_right_top).setVisibility(View.VISIBLE);
+//        startEnterAnim(findViewById(R.id.ll_right_top), top);
 
-        findViewById(R.id.bottom_right).setVisibility(View.VISIBLE);
-        startEnterAnim(findViewById(R.id.bottom_right), bottom);
+//        findViewById(R.id.bottom_right).setVisibility(View.VISIBLE);
+//        startEnterAnim(findViewById(R.id.bottom_right), bottom);
 
         findViewById(R.id.listview).setVisibility(View.VISIBLE);
         startEnterAnim(findViewById(R.id.listview), bottom);
@@ -372,8 +422,8 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
 
     public void onToolExitAnimation(){
         startExitAnim(findViewById(R.id.iv_back), top);
-        startExitAnim(findViewById(R.id.ll_right_top), top);
-        startExitAnim(findViewById(R.id.bottom_right), bottom);
+//        startExitAnim(findViewById(R.id.ll_right_top), top);
+//        startExitAnim(findViewById(R.id.bottom_right), bottom);
         startExitAnim(findViewById(R.id.listview), bottom);
     }
 
@@ -440,4 +490,191 @@ public class CreatePaintActivity extends BaseActivity implements View.OnClickLis
 
         }
     };
+
+    private void initRenwu(){
+        imgIds.clear();
+        imgIds.add(R.mipmap.renwu_1);
+        imgIds.add(R.mipmap.renwu_2);
+        imgIds.add(R.mipmap.renwu_3);
+        imgIds.add(R.mipmap.renwu_4);
+        imgIds.add(R.mipmap.renwu_5);
+        imgIds.add(R.mipmap.renwu_6);
+        imgIds.add(R.mipmap.renwu_7);
+        imgIds.add(R.mipmap.renwu_8);
+        imgIds.add(R.mipmap.renwu_9);
+        imgIds.add(R.mipmap.renwu_10);
+        imgIds.add(R.mipmap.renwu_11);
+        imgIds.add(R.mipmap.renwu_12);
+        imgIds.add(R.mipmap.renwu_13);
+        imgIds.add(R.mipmap.renwu_14);
+        imgIds.add(R.mipmap.renwu_15);
+        imgIds.add(R.mipmap.renwu_16);
+        imgIds.add(R.mipmap.renwu_17);
+        imgIds.add(R.mipmap.renwu_18);
+        imgIds.add(R.mipmap.renwu_19);
+        imgIds.add(R.mipmap.renwu_20);
+        imgIds.add(R.mipmap.renwu_21);
+        imgIds.add(R.mipmap.renwu_22);
+        imgIds.add(R.mipmap.renwu_23);
+        imgIds.add(R.mipmap.renwu_24);
+        imgIds.add(R.mipmap.renwu_25);
+        imgIds.add(R.mipmap.renwu_26);
+        imgIds.add(R.mipmap.renwu_27);
+        imgIds.add(R.mipmap.renwu_28);
+        imgIds.add(R.mipmap.renwu_29);
+        imgIds.add(R.mipmap.renwu_30);
+        imgIds.add(R.mipmap.renwu_31);
+        imgIds.add(R.mipmap.renwu_32);
+        imgIds.add(R.mipmap.renwu_33);
+        imgIds.add(R.mipmap.renwu_34);
+        imgIds.add(R.mipmap.renwu_35);
+        imgIds.add(R.mipmap.renwu_36);
+        imgIds.add(R.mipmap.renwu_37);
+        imgIds.add(R.mipmap.renwu_38);
+        imgIds.add(R.mipmap.renwu_39);
+        imgIds.add(R.mipmap.renwu_40);
+        imgIds.add(R.mipmap.renwu_41);
+        imgIds.add(R.mipmap.renwu_42);
+        imgIds.add(R.mipmap.renwu_43);
+        imgIds.add(R.mipmap.renwu_44);
+        imgIds.add(R.mipmap.renwu_45);
+        imgIds.add(R.mipmap.renwu_46);
+        imgIds.add(R.mipmap.renwu_47);
+        imgIds.add(R.mipmap.renwu_48);
+        imgIds.add(R.mipmap.renwu_49);
+        imgIds.add(R.mipmap.renwu_50);
+        imgIds.add(R.mipmap.renwu_51);
+        imgIds.add(R.mipmap.renwu_52);
+        imgIds.add(R.mipmap.renwu_53);
+        imgIds.add(R.mipmap.renwu_54);
+        imgIds.add(R.mipmap.renwu_55);
+        imgIds.add(R.mipmap.renwu_56);
+        imgIds.add(R.mipmap.renwu_57);
+    }
+
+    private void initShanshi(){
+        imgIds.clear();
+        imgIds.add(R.mipmap.shanshi_1);
+        imgIds.add(R.mipmap.shanshi_2);
+        imgIds.add(R.mipmap.shanshi_3);
+        imgIds.add(R.mipmap.shanshi_4);
+        imgIds.add(R.mipmap.shanshi_5);
+        imgIds.add(R.mipmap.shanshi_6);
+        imgIds.add(R.mipmap.shanshi_7);
+        imgIds.add(R.mipmap.shanshi_8);
+        imgIds.add(R.mipmap.shanshi_9);
+        imgIds.add(R.mipmap.shanshi_10);
+        imgIds.add(R.mipmap.shanshi_11);
+        imgIds.add(R.mipmap.shanshi_12);
+        imgIds.add(R.mipmap.shanshi_13);
+        imgIds.add(R.mipmap.shanshi_14);
+        imgIds.add(R.mipmap.shanshi_15);
+        imgIds.add(R.mipmap.shanshi_16);
+        imgIds.add(R.mipmap.shanshi_17);
+        imgIds.add(R.mipmap.shanshi_18);
+        imgIds.add(R.mipmap.shanshi_19);
+        imgIds.add(R.mipmap.shanshi_20);
+        imgIds.add(R.mipmap.shanshi_21);
+        imgIds.add(R.mipmap.shanshi_22);
+        imgIds.add(R.mipmap.shanshi_23);
+        imgIds.add(R.mipmap.shanshi_24);
+        imgIds.add(R.mipmap.shanshi_25);
+        imgIds.add(R.mipmap.shanshi_26);
+        imgIds.add(R.mipmap.shanshi_27);
+        imgIds.add(R.mipmap.shanshi_28);
+        imgIds.add(R.mipmap.shanshi_29);
+        imgIds.add(R.mipmap.shanshi_30);
+        imgIds.add(R.mipmap.shanshi_31);
+        imgIds.add(R.mipmap.shanshi_32);
+        imgIds.add(R.mipmap.shanshi_33);
+        imgIds.add(R.mipmap.shanshi_34);
+        imgIds.add(R.mipmap.shanshi_35);
+        imgIds.add(R.mipmap.shanshi_36);
+        imgIds.add(R.mipmap.shanshi_37);
+        imgIds.add(R.mipmap.shanshi_38);
+        imgIds.add(R.mipmap.shanshi_39);
+        imgIds.add(R.mipmap.shanshi_40);
+        imgIds.add(R.mipmap.shanshi_41);
+        imgIds.add(R.mipmap.shanshi_42);
+        imgIds.add(R.mipmap.shanshi_43);
+        imgIds.add(R.mipmap.shanshi_44);
+        imgIds.add(R.mipmap.shanshi_45);
+        imgIds.add(R.mipmap.shanshi_46);
+        imgIds.add(R.mipmap.shanshi_47);
+        imgIds.add(R.mipmap.shanshi_48);
+        imgIds.add(R.mipmap.shanshi_49);
+        imgIds.add(R.mipmap.shanshi_50);
+        imgIds.add(R.mipmap.shanshi_51);
+        imgIds.add(R.mipmap.shanshi_52);
+        imgIds.add(R.mipmap.shanshi_53);
+        imgIds.add(R.mipmap.shanshi_54);
+        imgIds.add(R.mipmap.shanshi_55);
+        imgIds.add(R.mipmap.shanshi_56);
+        imgIds.add(R.mipmap.shanshi_57);
+        imgIds.add(R.mipmap.shanshi_58);
+        imgIds.add(R.mipmap.shanshi_59);
+        imgIds.add(R.mipmap.shanshi_60);
+        imgIds.add(R.mipmap.shanshi_61);
+        imgIds.add(R.mipmap.shanshi_62);
+        imgIds.add(R.mipmap.shanshi_63);
+        imgIds.add(R.mipmap.shanshi_64);
+        imgIds.add(R.mipmap.shanshi_65);
+        imgIds.add(R.mipmap.shanshi_66);
+        imgIds.add(R.mipmap.shanshi_67);
+        imgIds.add(R.mipmap.shanshi_68);
+    }
+
+    private void initZhiwu(){
+        imgIds.clear();
+        imgIds.add(R.mipmap.zhiwu_1);
+        imgIds.add(R.mipmap.zhiwu_2);
+        imgIds.add(R.mipmap.zhiwu_3);
+        imgIds.add(R.mipmap.zhiwu_4);
+        imgIds.add(R.mipmap.zhiwu_5);
+        //imgIds.add(R.mipmap.zhiwu_6);
+        imgIds.add(R.mipmap.zhiwu_7);
+        imgIds.add(R.mipmap.zhiwu_8);
+        imgIds.add(R.mipmap.zhiwu_9);
+        imgIds.add(R.mipmap.zhiwu_10);
+        //imgIds.add(R.mipmap.zhiwu_11);
+        imgIds.add(R.mipmap.zhiwu_12);
+        imgIds.add(R.mipmap.zhiwu_13);
+        imgIds.add(R.mipmap.zhiwu_14);
+        imgIds.add(R.mipmap.zhiwu_15);
+        imgIds.add(R.mipmap.zhiwu_16);
+        imgIds.add(R.mipmap.zhiwu_17);
+        imgIds.add(R.mipmap.zhiwu_18);
+        imgIds.add(R.mipmap.zhiwu_19);
+        imgIds.add(R.mipmap.zhiwu_20);
+        imgIds.add(R.mipmap.zhiwu_21);
+        imgIds.add(R.mipmap.zhiwu_22);
+        imgIds.add(R.mipmap.zhiwu_23);
+        imgIds.add(R.mipmap.zhiwu_24);
+        imgIds.add(R.mipmap.zhiwu_25);
+        imgIds.add(R.mipmap.zhiwu_26);
+        imgIds.add(R.mipmap.zhiwu_27);
+        imgIds.add(R.mipmap.zhiwu_28);
+        imgIds.add(R.mipmap.zhiwu_29);
+        imgIds.add(R.mipmap.zhiwu_30);
+        imgIds.add(R.mipmap.zhiwu_31);
+        imgIds.add(R.mipmap.zhiwu_32);
+        imgIds.add(R.mipmap.zhiwu_33);
+        imgIds.add(R.mipmap.zhiwu_34);
+        imgIds.add(R.mipmap.zhiwu_35);
+        imgIds.add(R.mipmap.zhiwu_36);
+        imgIds.add(R.mipmap.zhiwu_37);
+        imgIds.add(R.mipmap.zhiwu_38);
+        //imgIds.add(R.mipmap.zhiwu_39);
+        imgIds.add(R.mipmap.zhiwu_40);
+        imgIds.add(R.mipmap.zhiwu_41);
+        //imgIds.add(R.mipmap.zhiwu_42);
+        imgIds.add(R.mipmap.zhiwu_43);
+        imgIds.add(R.mipmap.zhiwu_44);
+        imgIds.add(R.mipmap.zhiwu_45);
+        imgIds.add(R.mipmap.zhiwu_46);
+        imgIds.add(R.mipmap.zhiwu_47);
+        imgIds.add(R.mipmap.zhiwu_48);
+        imgIds.add(R.mipmap.zhiwu_49);
+        imgIds.add(R.mipmap.zhiwu_50);
+    }
 }

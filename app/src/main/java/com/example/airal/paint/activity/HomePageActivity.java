@@ -9,6 +9,7 @@ import com.example.airal.paint.R;
 import com.example.airal.paint.activity.create.ChooseBgActivity;
 import com.example.airal.paint.activity.knowledge.KnowledgelinkActivity;
 import com.example.airal.paint.activity.setting.SetActivity;
+import com.example.airal.paint.activity.study.StudyHomeActivity;
 
 /**
  * Created by airal on 2018/4/24.
@@ -62,6 +63,7 @@ public class HomePageActivity extends BaseActivity {
                 break;
             case R.id.ll_1_1:
                 //学习
+                startActivity(new Intent(getApplicationContext(), StudyHomeActivity.class));
                 break;
             default:
                 break;
