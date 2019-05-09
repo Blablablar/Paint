@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_color">
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/x100"
+            android:layout_marginBottom="@dimen/x90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/iv_type_1"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_1"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_2"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_2"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_3"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_3"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_4"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_4"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_5"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_5"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_6"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_6"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_7"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_7"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_8"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_8"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_9"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_9"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_10"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_10"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_11"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_11"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_12"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_12"
+                android:adjustViewBounds="true"/>
+
+            <ImageView
+                android:id="@+id/iv_type_13"
+                android:layout_width="@dimen/x50"
+                android:layout_height="wrap_content"
+                android:src="@drawable/goutu_home_13"
+                android:adjustViewBounds="true"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginRight="@dimen/x40"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/goutu_home_img"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/x180"
+        android:src="@drawable/icon_back"/>
+</RelativeLayout>

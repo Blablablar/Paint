@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/theme_color">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_marginTop="@dimen/x20"
+        android:layout_marginRight="@dimen/x30"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="@dimen/x180"
+        android:layout_height="@dimen/x180"
+        android:src="@drawable/icon_back"/>
+
+    <LinearLayout
+        android:paddingRight="@dimen/x100"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/x40"
+        android:layout_marginTop="@dimen/x100"
+        android:layout_marginBottom="@dimen/x90"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_type_1"
+            android:layout_width="@dimen/x150"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xuexi_1"
+            android:adjustViewBounds="true"/>
+
+        <ImageView
+            android:id="@+id/iv_type_2"
+            android:layout_width="@dimen/x150"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xuexi_2"
+            android:adjustViewBounds="true"/>
+
+        <ImageView
+            android:id="@+id/iv_type_3"
+            android:layout_width="@dimen/x150"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xuexi_3"
+            android:adjustViewBounds="true"/>
+
+        <ImageView
+            android:id="@+id/iv_type_4"
+            android:layout_width="@dimen/x150"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xuexi_4"
+            android:adjustViewBounds="true"/>
+
+        <ImageView
+            android:id="@+id/iv_type_5"
+            android:layout_width="@dimen/x150"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xuexi_5"
+            android:adjustViewBounds="true"/>
+
+        <ImageView
+            android:id="@+id/iv_type_6"
+            android:layout_width="@dimen/x150"
+            android:layout_height="wrap_content"
+            android:src="@drawable/xuexi_6"
+            android:adjustViewBounds="true"/>
+    </LinearLayout>
+
+</RelativeLayout>

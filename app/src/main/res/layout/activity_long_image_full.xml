@@ -19,4 +19,15 @@
         android:layout_width="@dimen/x180"
         android:layout_height="@dimen/x180"
         android:src="@drawable/icon_back"/>
+
+    <ImageView
+        android:id="@+id/iv_play"
+        android:visibility="gone"
+        android:layout_marginRight="@dimen/x40"
+        android:layout_marginBottom="@dimen/x40"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/selector_book_play"/>
 </RelativeLayout>

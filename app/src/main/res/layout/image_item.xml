@@ -4,10 +4,16 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/iv_image"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true" />
+    </RelativeLayout>
 
 </RelativeLayout>

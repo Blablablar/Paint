@@ -30,6 +30,7 @@ public class SysConfig {
     public static Bitmap tempSaveBitmap=null;
     public static Bitmap yzbitmap=null;
     public static int musicId[]={R.raw.music_1, R.raw.music_2, R.raw.music_3, R.raw.music_4, R.raw.music_5};
+    public static int bookMUusicId[]={R.raw.book_baihua, R.raw.book_wenyan};
     public Record tikuanRecord;
 
     public static Bitmap loadBitmapFromView(View v) {

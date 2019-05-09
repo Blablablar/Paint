@@ -13,6 +13,7 @@ import android.view.WindowManager;
 
 import com.example.airal.paint.AudioService;
 import com.example.airal.paint.R;
+import com.example.airal.paint.activity.setting.CommonUtils;
 import com.example.airal.paint.tool.LifecycleHandler;
 
 import java.util.List;
@@ -75,20 +76,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onResume() {
         super.onResume();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningServiceInfo> services = am.getRunningServices(100);
-        boolean find=false;
-        for (int i=0;i<services.size();i++) {
-            // 得到所有正在运行的服务的名称
-            String name = services.get(i).service.getClassName();
-            if (AudioService.class.equals(name)) {
-                find=true;
-            }
-        }
-        if(!find){
-            Intent intent = new Intent();
-            intent.setClass(this, AudioService.class);
-            startService(intent);
-        }
+        CommonUtils.restartAudio(getBaseContext());
     }
 }
